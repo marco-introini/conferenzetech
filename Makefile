@@ -1,5 +1,6 @@
 check:
-	./vendor/bin/phpstan
+	./vendor/bin/phpstan analyse
+	./vendor/bin/rector --dry-run
 
 recreate:
 	php artisan migrate:fresh
