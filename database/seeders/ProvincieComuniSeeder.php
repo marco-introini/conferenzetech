@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comune;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use function Laravel\Prompts\error;
 
 class ProvincieComuniSeeder extends Seeder
 {
@@ -167,57 +169,27 @@ class ProvincieComuniSeeder extends Seeder
             $provincia['created_at'] = $now;
             $provincia['updated_at'] = $now;
         }
-        unset($provincia);
+        DB::table('province')->insert($province);
 
-        DB::transaction(function () use ($province, $now) {
-            // Seed provinces if table is empty
-            if (DB::table('province')->count() === 0) {
-                DB::table('province')->insert($province);
+        $path = base_path('database/data/comuni.csv');
+        if (! File::exists($path)) {
+            error("Unable to find comuni.csv at $path");
+            return;
+        }
+
+        $csvCollection = File::lines($path);
+
+        foreach ($csvCollection as $line) {
+            $columns = array_map('trim', explode(';', $line));
+            $provinceId = DB::table('province')->where('short_name', $columns[2])->value('id');
+            if (!$provinceId) {
+                error("Unable to find province with short_name {$columns[2]}");
+                continue;
             }
-
-            // Build map short_name => id
-            $map = DB::table('province')->pluck('id', 'short_name');
-
-            // Load comuni from JSON
-            $path = base_path('database/data/comuni.json');
-            if (! File::exists($path)) {
-                // If the JSON is missing, we skip comuni to allow province seeding
-                return;
-            }
-
-            $json = File::get($path);
-            $items = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
-
-            if (! is_array($items)) {
-                return;
-            }
-
-            $batch = [];
-            foreach ($items as $item) {
-                if (! isset($item['name'], $item['province_short_name'])) {
-                    continue;
-                }
-                $short = Str::upper($item['province_short_name']);
-                $provinceId = $map[$short] ?? null;
-                if ($provinceId === null) {
-                    continue;
-                }
-                $batch[] = [
-                    'name' => $item['name'],
-                    'province_id' => $provinceId,
-                    'created_at' => $now,
-                    'updated_at' => $now,
-                ];
-
-                if (count($batch) === 1000) {
-                    DB::table('comuni')->insert($batch);
-                    $batch = [];
-                }
-            }
-
-            if (! empty($batch)) {
-                DB::table('comuni')->insert($batch);
-            }
-        });
+            Comune::create([
+               'name' => $columns[0],
+               'province_id' => $provinceId,
+            ]);
+        }
     }
 }
