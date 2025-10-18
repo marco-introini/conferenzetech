@@ -29,4 +29,4 @@ return RectorConfig::configure()
     ->withSets([
         LaravelLevelSetList::UP_TO_LARAVEL_120,
         LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
-    ]);;
+    ]);
