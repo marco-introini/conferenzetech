@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Seed Italian provinces and comuni
+        $this->call(ProvincieComuniSeeder::class);
 
+        // Optionally create a sample user for testing/development
+        // User::factory(10)->create();
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
