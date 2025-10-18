@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('comuni', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('name');
             $table->foreignIdFor(Provincia::class, 'province_id')
                 ->constrained('province');
             $table->timestamps();
