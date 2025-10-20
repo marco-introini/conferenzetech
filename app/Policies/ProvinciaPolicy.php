@@ -16,7 +16,7 @@ class ProvinciaPolicy
             return false;
         }
 
-        return $provincia->comuni()->exists();
+        return $provincia->comuni->isEmpty();
     }
 
 }

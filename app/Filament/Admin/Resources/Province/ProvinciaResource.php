@@ -32,8 +32,10 @@ class ProvinciaResource extends Resource
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nome')
                     ->required(),
                 TextInput::make('short_name')
+                    ->label('Sigla')
                     ->required(),
             ]);
     }
@@ -43,14 +45,13 @@ class ProvinciaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nome')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('short_name')
+                    ->label('Sigla')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
