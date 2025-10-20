@@ -22,6 +22,11 @@ class ProvinciaResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationLabel = 'Province';
+    protected static ?string $label = 'Provincia';
+    protected static ?string $pluralLabel = 'Province';
+    protected static ?string $slug = 'province';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

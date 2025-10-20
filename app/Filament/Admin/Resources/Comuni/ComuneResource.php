@@ -23,15 +23,24 @@ class ComuneResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationLabel = 'Comuni';
+    protected static ?string $label = 'Comune';
+    protected static ?string $pluralLabel = 'Comuni';
+    protected static ?string $slug = 'comuni';
+
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nome')
                     ->required(),
                 Select::make('province_id')
+                    ->label('Provincia')
                     ->relationship('province', 'name')
-                    ->required(),
+                    ->required()
+                    ->searchable()
+                    ->preload(),
             ]);
     }
 
@@ -40,14 +49,12 @@ class ComuneResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nome')
                     ->searchable(),
                 TextColumn::make('province.name')
+                    ->label('Provincia')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
