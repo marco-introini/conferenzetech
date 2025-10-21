@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comune extends Model
 {
@@ -15,5 +16,10 @@ class Comune extends Model
     public function province(): BelongsTo
     {
         return $this->belongsTo(Provincia::class, 'province_id');
+    }
+
+    public function conferences(): HasMany
+    {
+        return $this->hasMany(Conference::class);
     }
 }

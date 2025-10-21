@@ -13,8 +13,17 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignIdFor(User::class)->constrained('users');
-            $table->foreignIdFor(Comune::class)->constrained('comuni');
+            $table->foreignIdFor(User::class)
+                ->constrained('users');
+            $table->foreignIdFor(Comune::class)
+                ->constrained('comuni');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->string('location');
+            $table->string('cover_image')
+                ->nullable();
+            $table->string('url')
+                ->nullable();
             $table->timestamps();
         });
     }
