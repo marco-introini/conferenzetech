@@ -24,17 +24,29 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'last_name' => fake()->optional(0.8)->lastName(),
+            'name' => fake()
+                ->name(),
+            'last_name' => fake()->optional(0.8)
+                ->lastName(),
             'comune_id' => Comune::inRandomOrder()->first()->id ?? null,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'phone' => fake()->optional(0.5)->phoneNumber(),
+            'phone' => fake()->optional(0.5)
+                ->phoneNumber(),
             'password' => static::$password ??= 'password',
+            'is_admin' => false,
+            'telegram' => fake()->optional(0.5)
+                ->regexify('@[a-zA-Z0-9_]{3,15}'),
+            'linkedin' => fake()->optional(0.5)
+                ->regexify('https://linkedin\.com/in/[a-z-]{5,20}'),
+            'twitter' => fake()->optional(0.5)
+                ->regexify('@[a-zA-Z0-9_]{3,15}'),
             'remember_token' => Str::random(10),
             'two_factor_secret' => Str::random(10),
             'two_factor_recovery_codes' => Str::random(10),
-            'two_factor_confirmed_at' => now(),
+            'two_factor_confirmed_at' => fake()
+                ->optional(0.5)
+                ->dateTime(),
         ];
     }
 
