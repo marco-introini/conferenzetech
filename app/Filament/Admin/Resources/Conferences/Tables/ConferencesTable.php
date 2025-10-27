@@ -16,17 +16,22 @@ class ConferencesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nome conferenza')
                     ->searchable(),
                 TextColumn::make('user.name')
+                    ->label('Inserita da')
                     ->searchable(),
                 TextColumn::make('comune.name')
+                    ->label('Comune della conferenza')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Data creazione')
+                    ->dateTime('d/m/Y H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Data ultima modifica')
+                    ->dateTime('d/m/Y H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
