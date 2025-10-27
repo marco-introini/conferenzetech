@@ -39,6 +39,10 @@ class ConferenceForm
                     ->fileAttachmentsDirectory('description_images')
                     ->fileAttachmentsVisibility('public')
                     ->columnSpanFull(),
+                TextInput::make('url')
+                    ->columnSpanFull()
+                    ->label('Sito Internet della conferenza')
+                    ->url(),
                 Section::make('Date Conferenza')
                     ->schema([
                         DateTimePicker::make('start_date')
@@ -55,9 +59,6 @@ class ConferenceForm
                     ->image()
                     ->imageEditor()
                     ->disk('conferences'),
-                TextInput::make('url')
-                    ->label('Sito Internet della conferenza')
-                    ->url(),
             ]);
     }
 }

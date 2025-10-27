@@ -31,11 +31,6 @@ class ConferenceResource extends Resource
         return ConferenceForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema
-    {
-        return ConferenceInfolist::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return ConferencesTable::configure($table);
@@ -53,7 +48,6 @@ class ConferenceResource extends Resource
         return [
             'index' => ListConferences::route('/'),
             'create' => CreateConference::route('/create'),
-            'view' => ViewConference::route('/{record}'),
             'edit' => EditConference::route('/{record}/edit'),
         ];
     }

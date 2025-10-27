@@ -2,8 +2,6 @@
 
 namespace App\Filament\Admin\Resources\Conferences\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -17,12 +15,15 @@ class ConferencesTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Nome conferenza')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('user.name')
                     ->label('Inserita da')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('comune.name')
-                    ->label('Comune della conferenza')
+                    ->label('Comune')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Data creazione')
@@ -39,13 +40,9 @@ class ConferencesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }
