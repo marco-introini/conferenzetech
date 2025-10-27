@@ -22,6 +22,10 @@ class ConferenceResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $label = 'Conferenza';
+    protected static ?string $pluralLabel = 'Conferenze';
+    protected static ?string $slug = 'conferenze';
+
     public static function form(Schema $schema): Schema
     {
         return ConferenceForm::configure($schema);
