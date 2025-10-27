@@ -7,6 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -23,13 +24,21 @@ class UserForm
                 Select::make('comune_id')
                     ->label('Comune')
                     ->relationship('comune', 'name'),
-                TextInput::make('phone')
-                    ->label('Telefono')
-                    ->tel(),
-                TextInput::make('email')
-                    ->label('Email')
-                    ->email()
-                    ->required(),
+                Section::make('Info di contatto')
+                    ->columnSpanFull()
+                    ->columns()
+                    ->schema([
+                        TextInput::make('phone')
+                            ->label('Telefono')
+                            ->tel(),
+                        TextInput::make('email')
+                            ->label('Email')
+                            ->email()
+                            ->required(),
+                        TextInput::make('telegram'),
+                        TextInput::make('linkedin'),
+                        TextInput::make('twitter'),
+                    ]),
                 DateTimePicker::make('email_verified_at')
                     ->label('Data verifica email'),
                 DateTimePicker::make('two_factor_confirmed_at')

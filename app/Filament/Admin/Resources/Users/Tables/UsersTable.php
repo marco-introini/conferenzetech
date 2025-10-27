@@ -17,25 +17,20 @@ class UsersTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nome')
                     ->searchable(),
                 TextColumn::make('last_name')
+                    ->label('Cognome')
                     ->searchable(),
-                TextColumn::make('comune_id')
-                    ->numeric()
+                TextColumn::make('comune.nome')
+                    ->label('Comune')
                     ->sortable(),
                 IconColumn::make('is_admin')
+                    ->label('Admin')
                     ->boolean(),
-                TextColumn::make('phone')
-                    ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('two_factor_confirmed_at')
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
