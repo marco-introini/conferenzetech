@@ -52,7 +52,8 @@ class ProvinciaResource extends Resource
                     ->label('Sigla')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Data creazione')
+                    ->dateTime('d/m/Y H:m:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -64,9 +65,6 @@ class ProvinciaResource extends Resource
                 DeleteAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 
