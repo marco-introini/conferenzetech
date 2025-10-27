@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -18,13 +19,16 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Nome')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('last_name')
                     ->label('Cognome')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('comune.nome')
+                TextColumn::make('comune.name')
                     ->label('Comune')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 IconColumn::make('is_admin')
                     ->label('Admin')
                     ->boolean(),
@@ -41,16 +45,14 @@ class UsersTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TernaryFilter::make('is_admin')
+                    ->label('Admin'),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()
+                    ->label('Dettagli'),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }

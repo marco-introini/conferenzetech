@@ -16,14 +16,21 @@ class UserForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->label('Nome')
-                    ->required(),
-                TextInput::make('last_name')
-                    ->label('Cognome'),
-                Select::make('comune_id')
-                    ->label('Comune')
-                    ->relationship('comune', 'name'),
+                Section::make('Informazioni generali')
+                    ->columnSpanFull()
+                    ->columns()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Nome')
+                            ->required(),
+                        TextInput::make('last_name')
+                            ->required()
+                            ->label('Cognome'),
+                        Select::make('comune_id')
+                            ->required()
+                            ->label('Comune')
+                            ->relationship('comune', 'name'),
+                    ]),
                 Section::make('Info di contatto')
                     ->columnSpanFull()
                     ->columns()
@@ -39,10 +46,6 @@ class UserForm
                         TextInput::make('linkedin'),
                         TextInput::make('twitter'),
                     ]),
-                DateTimePicker::make('email_verified_at')
-                    ->label('Data verifica email'),
-                DateTimePicker::make('two_factor_confirmed_at')
-                    ->label('Data verifica 2FA'),
             ]);
     }
 }
