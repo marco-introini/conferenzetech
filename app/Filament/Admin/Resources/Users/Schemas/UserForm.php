@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -15,27 +16,24 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nome')
                     ->required(),
-                TextInput::make('last_name'),
-                TextInput::make('comune_id')
-                    ->numeric(),
-                Toggle::make('is_admin')
-                    ->required(),
+                TextInput::make('last_name')
+                    ->label('Cognome'),
+                Select::make('comune_id')
+                    ->label('Comune')
+                    ->relationship('comune', 'name'),
                 TextInput::make('phone')
+                    ->label('Telefono')
                     ->tel(),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->email()
                     ->required(),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->required(),
-                Textarea::make('two_factor_secret')
-                    ->columnSpanFull(),
-                Textarea::make('two_factor_recovery_codes')
-                    ->columnSpanFull(),
-                DateTimePicker::make('two_factor_confirmed_at'),
+                DateTimePicker::make('email_verified_at')
+                    ->label('Data verifica email'),
+                DateTimePicker::make('two_factor_confirmed_at')
+                    ->label('Data verifica 2FA'),
             ]);
     }
 }

@@ -12,36 +12,31 @@ class UserInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label('Nome'),
                 TextEntry::make('last_name')
-                    ->placeholder('-'),
-                TextEntry::make('comune_id')
-                    ->numeric()
-                    ->placeholder('-'),
+                    ->label('Cognome'),
+                TextEntry::make('comune.name')
+                    ->label('Comune'),
                 IconEntry::make('is_admin')
+                    ->label('Admin')
                     ->boolean(),
                 TextEntry::make('phone')
-                    ->placeholder('-'),
+                    ->label('Telefono'),
                 TextEntry::make('email')
-                    ->label('Email address'),
+                    ->label('Email'),
                 TextEntry::make('email_verified_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('two_factor_secret')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('two_factor_recovery_codes')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
+                    ->label('Data verifica email')
+                    ->dateTime('d/m/Y H:m:s'),
                 TextEntry::make('two_factor_confirmed_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->dateTime('d/m/Y H:m:s')
+                    ->label('Data verifica 2FA'),
                 TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->dateTime('d/m/Y H:m:s')
+                    ->label('Data creazione'),
                 TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->dateTime('d/m/Y H:m:s')
+                    ->label('Data ultima modifica'),
             ]);
     }
 }
