@@ -84,4 +84,18 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Conference::class, 'user_id');
     }
 
+    public function registrations(): HasMany
+    {
+        return $this->hasMany(Registration::class, 'user_id');
+    }
+
+    public function messagesSent(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+    public function messagesReceived(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
 }
