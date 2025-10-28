@@ -13,7 +13,7 @@ class Conference extends Model
 
     protected $guarded = [];
 
-    public function user(): BelongsTo
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -23,8 +23,8 @@ class Conference extends Model
         return $this->belongsTo(Comune::class);
     }
 
-    public function conferences(): HasMany
+    public function participants(): HasMany
     {
-        return $this->hasMany(Conference::class);
+        return $this->hasMany(User::class, 'id','user_id');
     }
 }
