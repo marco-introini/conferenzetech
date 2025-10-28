@@ -10,9 +10,11 @@ class Registration extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function participant(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function conference(): BelongsTo

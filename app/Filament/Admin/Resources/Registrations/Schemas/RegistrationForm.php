@@ -13,13 +13,16 @@ class RegistrationForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('user_id')
+                    ->label('Partecipante')
+                    ->relationship('participant', 'name')
+                    ->required(),
                 Select::make('conference_id')
+                    ->label('Conferenza')
                     ->relationship('conference', 'name')
                     ->required(),
                 Textarea::make('public_message')
+                    ->label('Messaggio pubblico')
                     ->required()
                     ->columnSpanFull(),
             ]);
