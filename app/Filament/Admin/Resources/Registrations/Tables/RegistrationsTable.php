@@ -15,10 +15,12 @@ class RegistrationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('user_id')
+                TextColumn::make('participant.email')
+                    ->label('Partecipante')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('conference.name')
+                    ->label('Conferenza')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

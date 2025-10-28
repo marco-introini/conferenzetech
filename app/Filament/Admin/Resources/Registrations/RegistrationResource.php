@@ -22,6 +22,10 @@ class RegistrationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $label = 'Registrazione';
+    protected static ?string $pluralLabel = 'Registrazioni';
+    protected static ?string $slug = 'registrazioni';
+
     public static function form(Schema $schema): Schema
     {
         return RegistrationForm::configure($schema);
