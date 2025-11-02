@@ -23,8 +23,11 @@ class Conference extends Model
         return $this->belongsTo(Comune::class);
     }
 
-    public function participants(): HasMany
+    public function registrations(): HasMany
     {
-        return $this->hasMany(User::class, 'id','user_id');
+        return $this->hasMany(Registration::class, 'conference_id');
     }
+
+
+
 }

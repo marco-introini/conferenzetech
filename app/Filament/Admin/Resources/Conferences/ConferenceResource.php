@@ -9,6 +9,7 @@ use App\Filament\Admin\Resources\Conferences\Pages\ViewConference;
 use App\Filament\Admin\Resources\Conferences\Schemas\ConferenceForm;
 use App\Filament\Admin\Resources\Conferences\Schemas\ConferenceInfolist;
 use App\Filament\Admin\Resources\Conferences\Tables\ConferencesTable;
+use App\Filament\Admin\Resources\Users\RelationManagers\RegistrationsRelationManager;
 use App\Models\Conference;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -39,7 +40,7 @@ class ConferenceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RegistrationsRelationManager::class,
         ];
     }
 
