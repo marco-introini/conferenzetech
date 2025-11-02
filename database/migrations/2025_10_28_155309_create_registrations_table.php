@@ -17,6 +17,7 @@ return new class extends Migration {
                 ->constrained('conferences');
             $table->text('public_message');
             $table->timestamps();
+            $table->index(['user_id', 'conference_id']);
         });
     }
 
