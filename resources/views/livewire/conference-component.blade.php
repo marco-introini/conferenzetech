@@ -1,7 +1,11 @@
 <div>
 
     @foreach ($conferences as $conference)
-        <br>{{$conference->name}}
+        <div>
+            <div>
+                <img src="{{asset('storage/'.$conference->cover_image)}}" alt="">
+            </div>{{$conference->name}}
+        </div>
     @endforeach
 
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Home;
+use App\Livewire\ConferenceComponent;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -8,7 +8,7 @@ use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::get('/', Home::class)
+Route::get('/', ConferenceComponent::class)
     ->name('home');
 
 Route::view('dashboard', 'dashboard')

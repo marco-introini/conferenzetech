@@ -5,8 +5,10 @@ namespace App\Livewire;
 use App\Models\Conference;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('components.layouts.public')]
 class ConferenceComponent extends Component
 {
 
