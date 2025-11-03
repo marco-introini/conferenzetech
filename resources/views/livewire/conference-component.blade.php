@@ -1,11 +1,7 @@
-<div>
+<div class="mx-6 my-6">
 
     @foreach ($conferences as $conference)
-        <div>
-            <div>
-                <img src="{{asset('storage/'.$conference->cover_image)}}" alt="">
-            </div>{{$conference->name}}
-        </div>
+        <x-conference-summary :conference="$conference"/>
     @endforeach
 
 
