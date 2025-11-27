@@ -30,16 +30,25 @@ class Conference extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsTo<Comune, $this>
+     */
     public function comune(): BelongsTo
     {
         return $this->belongsTo(Comune::class);
     }
 
+    /**
+     * @return HasMany<Registration, $this>
+     */
     public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class, 'conference_id');

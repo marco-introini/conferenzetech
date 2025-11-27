@@ -12,6 +12,9 @@ class Provincia extends Model
 
     protected $table = 'province';
 
+    /**
+     * @return HasMany<Comune, $this>
+     */
     public function comuni(): HasMany
     {
         return $this->hasMany(Comune::class, 'province_id');

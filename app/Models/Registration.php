@@ -12,11 +12,17 @@ class Registration extends Model
 
     protected $guarded = [];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function participant(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * @return BelongsTo<Conference, $this>
+     */
     public function conference(): BelongsTo
     {
         return $this->belongsTo(Conference::class);
