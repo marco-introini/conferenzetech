@@ -14,7 +14,7 @@ class ComuneFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->city(),
+            'name' => $this->faker->city(),
             'province_id' => Provincia::inRandomOrder()->first()->id ?? Provincia::factory()->create(),
 
             'created_at' => Carbon::now(),

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
         Conference::factory(10)->create();
-        Registration::factory(20)->create();
+
+        $this->call(RegistrationSeeder::class);
     }
 }
