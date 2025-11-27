@@ -69,8 +69,12 @@ class Login extends Component
                 'email' => __('auth.failed'),
             ]);
         }
-
-        return $user;
+        if ($user instanceof User){
+            return $user;
+        }
+        else{
+            throw new \Exception('Unexpected user type returned from authentication provider');
+        }
     }
 
     /**
