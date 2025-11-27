@@ -13,7 +13,8 @@ class ProvinciaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->word(),
+            'name' => $this->faker->word(),
+            'slug' => $this->faker->randomLetter().$this->faker->randomLetter(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

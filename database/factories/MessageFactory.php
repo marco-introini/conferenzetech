@@ -14,13 +14,13 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'message' => $this->faker->word(),
+            'sender_id' => User::inRandomOrder()->first() ?? User::factory()->create(),
+            'receiver_id' => User::inRandomOrder()->first() ?? User::factory()->create(),
+            'message' => $this->faker->text(),
             'stream_id' => $this->faker->word(),
+
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-
-            'sender_id' => User::factory(),
-            'receiver_id' => User::factory(),
         ];
     }
 }

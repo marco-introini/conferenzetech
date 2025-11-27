@@ -14,11 +14,11 @@ class ComuneFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->word(),
+            'nome' => $this->faker->city(),
+            'province_id' => Provincia::inRandomOrder()->first()->id ?? Provincia::factory()->create(),
+
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-
-            'province_id' => Provincia::factory(),
         ];
     }
 }
